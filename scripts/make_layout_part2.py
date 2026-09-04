@@ -17,7 +17,7 @@ import { QuoteModalService } from '../../services/quote-modal.service';
   standalone: true,
   template: `
     <div class="sticky-actions">
-      <a href="https://wa.me/919876543210?text=Hello%20Samarth%20Engineering" target="_blank" rel="noopener" class="sticky-btn whatsapp-btn" aria-label="Chat on WhatsApp">
+      <a href="https://wa.me/918454060784?text=Hello%20Samarth%20Engineering" target="_blank" rel="noopener" class="sticky-btn whatsapp-btn" aria-label="Chat on WhatsApp">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.82.49 3.53 1.34 5.03L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.52 0 10-4.48 10-10s-4.48-10-10-10z"/></svg>
         <span class="btn-label">WhatsApp</span>
       </a>
