@@ -349,7 +349,7 @@ import { AutomationSolution } from '../../core/models/solution.model';
                 <div class="contact-icon">📞</div>
                 <div>
                   <strong>Direct Engineering Sales:</strong>
-                  <p><a href="tel:+912027128890">+91 (020) 2712-8890</a> / <a href="tel:+919876543210">+91 98765 43210</a></p>
+                  <p><a href="tel:+912027128890">+91 (020) 2712-8890</a> / <a href="tel:+918454060784">+91 98765 43210</a></p>
                 </div>
               </div>
               <div class="contact-item">
@@ -907,7 +907,7 @@ export class HomeComponent implements OnInit {
     private solutionService: SolutionService,
     private quoteService: QuoteModalService,
     private seoService: SeoService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.seoService.setTitle('Samarth Engineering | Precision Motion, Automation & Industrial Components');

@@ -567,5 +567,5 @@ import { QuoteModalService } from '../../services/quote-modal.service';
   standalone: true,
   template: `
     <div class="sticky-actions">
-      <a href="https://wa.me/919876543210?text=Hello%20Samarth%20Engineering" target="_blank" rel="noopener" class="sticky-btn whatsapp-btn" aria-label="Chat on WhatsApp">
+      <a href="https://wa.me/918454060784?text=Hello%20Samarth%20Engineering" target="_blank" rel="noopener" class="sticky-btn whatsapp-btn" aria-label="Chat on WhatsApp">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c
