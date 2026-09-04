@@ -342,7 +342,7 @@ import { AutomationSolution } from '../../core/models/solution.model';
                 <div class="contact-icon">📍</div>
                 <div>
                   <strong>Works & Headquarters:</strong>
-                  <p>Plot No. A-45/2, MIDC Industrial Area, Bhosari, Pune - 411026, Maharashtra, India</p>
+                  <p>Chhatrapati Sambhaji Nagar, Maharashtra, India</p>
                 </div>
               </div>
               <div class="contact-item">
