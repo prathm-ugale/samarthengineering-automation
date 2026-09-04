@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 68" fill="none" width="100%" height="100%">
+  <defs>
+    <linearGradient id="samarthTealGradL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E5E0" />
+      <stop offset="100%" stop-color="#00A8A5" />
+    </linearGradient>
+    <linearGradient id="samarthAmberGradL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFBD59" />
+      <stop offset="100%" stop-color="#F07822" />
+    </linearGradient>
+    <linearGradient id="samarthNavyGradL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14314A" />
+      <stop offset="100%" stop-color="#0B1E33" />
+    </linearGradient>
+  </defs>
+
+  <!-- LOGO EMBLEM -->
+  <g transform="translate(6, 6)">
+    <!-- Outer Chamfered Hexagon -->
+    <path d="M28 2 L52 16 L52 40 L28 54 L4 40 L4 16 Z" 
+          fill="url(#samarthNavyGradL)" 
+          stroke="url(#samarthTealGradL)" 
+          stroke-width="2.5" 
+          stroke-linejoin="round" />
+    
+    <!-- Gear Teeth -->
+    <path d="M28 -1 L28 4" stroke="url(#samarthAmberGradL)" stroke-width="3" stroke-linecap="round" />
+    <path d="M55 14 L50 17" stroke="url(#samarthAmberGradL)" stroke-width="3" stroke-linecap="round" />
+    <path d="M55 42 L50 39" stroke="url(#samarthAmberGradL)" stroke-width="3" stroke-linecap="round" />
+    <path d="M28 57 L28 52" stroke="url(#samarthAmberGradL)" stroke-width="3" stroke-linecap="round" />
+    <path d="M1 42 L6 39" stroke="url(#samarthAmberGradL)" stroke-width="3" stroke-linecap="round" />
+    <path d="M1 14 L6 17" stroke="url(#samarthAmberGradL)" stroke-width="3" stroke-linecap="round" />
+
+    <!-- Inner Dynamic S-Curvature Track -->
+    <path d="M40 17 C34 11, 19 12, 17 21 C15 30, 39 27, 38 36 C37 45, 21 44, 16 38" 
+          stroke="url(#samarthTealGradL)" 
+          stroke-width="4.5" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+
+    <!-- Motion Core Pulse -->
+    <circle cx="28" cy="28" r="5" fill="url(#samarthAmberGradL)" />
+    <circle cx="28" cy="28" r="2.2" fill="#0B1E33" />
+
+    <!-- Precision Alignment Nodes -->
+    <circle cx="40" cy="17" r="2.5" fill="#FFFFFF" />
+    <circle cx="16" cy="38" r="2.5" fill="#FFFFFF" />
+  </g>
+
+  <!-- LOGO TYPOGRAPHY -->
+  <g transform="translate(74, 15)">
+    <!-- Primary Brand Wordmark -->
+    <text x="0" y="24" font-family="'Manrope', 'DM Sans', -apple-system, sans-serif" font-size="24" font-weight="800" letter-spacing="1.8" fill="#FFFFFF">
+      SAMARTH
+    </text>
+    
+    <!-- Secondary Engineering Descriptor -->
+    <text x="1" y="40" font-family="'DM Sans', 'Inter', sans-serif" font-size="10" font-weight="800" letter-spacing="3.8" fill="#00E5E0">
+      ENGINEERING
+    </text>
+
+    <!-- Signal Dot -->
+    <circle cx="132" cy="18" r="3.5" fill="#FFA82E" />
+  </g>
+</svg>
