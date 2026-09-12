@@ -572,3 +572,24 @@ textarea.form-control {
   background: rgba(0, 124, 122, 0.2);
   color: var(--color-navy);
 }
+
+/* --------------------------------------------------------------------------
+   11. THIRD-PARTY WIDGET SUPPRESSION (Netlify Drawer & Feedback Badges)
+   -------------------------------------------------------------------------- */
+netlify-drawer,
+#netlify-drawer,
+iframe#netlify-drawer,
+iframe[data-netlify-drawer="true"],
+iframe[src*="netlify"],
+.netlify-drawer-root,
+div[data-netlify-drawer] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  z-index: -9999 !important;
+}
