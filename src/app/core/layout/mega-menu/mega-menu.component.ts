@@ -162,11 +162,15 @@ import { ProductService } from '../../services/product.service';
     }
   `]
 })
+// Hover dropdown mega-menu displaying all product catalog categories and highlights
 export class MegaMenuComponent {
+  // Emits when cursor leaves menu or user selects a navigation link
   @Output() close = new EventEmitter<void>();
+  // Product categories list shown inside the mega-menu grid
   categories: ProductCategory[] = [];
 
   constructor(private productService: ProductService) {
+    // Retrieves product categories from ProductService
     this.categories = this.productService.getCategories();
   }
 }

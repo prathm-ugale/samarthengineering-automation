@@ -5,16 +5,17 @@ import { MegaMenuComponent } from '../mega-menu/mega-menu.component';
 import { MobileNavComponent } from '../mobile-nav/mobile-nav.component';
 import { QuoteModalService } from '../../services/quote-modal.service';
 import { FormsModule } from '@angular/forms';
+import { BrandLogoComponent } from '../../../shared/components/brand-logo/brand-logo.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, NgIf, MegaMenuComponent, MobileNavComponent, FormsModule],
+  imports: [RouterLink, RouterLinkActive, NgIf, MegaMenuComponent, MobileNavComponent, FormsModule, BrandLogoComponent],
   template: `
     <header class="site-header">
       <div class="container header-inner">
         <a routerLink="/" class="brand-logo" aria-label="Samarth Engineering Home">
-          <img src="assets/images/logo.svg" alt="Samarth Engineering - Industrial Automation & Components" class="brand-logo-img" />
+          <app-brand-logo></app-brand-logo>
         </a>
 
         <nav class="desktop-nav">
@@ -24,9 +25,7 @@ import { FormsModule } from '@angular/forms';
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
             </a>
           </div>
-          <a routerLink="/solutions" routerLinkActive="active" class="nav-link">Solutions</a>
           <a routerLink="/industries" routerLinkActive="active" class="nav-link">Industries</a>
-          <a routerLink="/projects" routerLinkActive="active" class="nav-link">Projects</a>
           <a routerLink="/about" routerLinkActive="active" class="nav-link">About Us</a>
           <a routerLink="/resources" routerLinkActive="active" class="nav-link">Resources</a>
           <a routerLink="/contact" routerLinkActive="active" class="nav-link">Contact</a>
@@ -146,8 +145,11 @@ import { FormsModule } from '@angular/forms';
   `]
 })
 export class HeaderComponent {
+  // Reactive signal tracking mega-menu dropdown visibility
   showMegaMenu = signal<boolean>(false);
+  // Reactive signal controlling mobile drawer open/close state
   mobileMenuOpen = signal<boolean>(false);
+  // Two-way bound query string for the header search bar
   searchQuery = '';
 
   constructor(
@@ -155,10 +157,12 @@ export class HeaderComponent {
     private router: Router
   ) {}
 
+  // Open the global Request for Quotation (RFQ) modal
   openQuote(): void {
     this.quoteService.open({ source: 'Header RFQ Button' });
   }
 
+  // Navigate to product catalog with the entered search query
   onSearch(): void {
     if (this.searchQuery.trim()) {
       this.router.navigate(['/products'], { queryParams: { q: this.searchQuery.trim() } });

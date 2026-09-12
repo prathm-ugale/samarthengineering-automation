@@ -65,4 +65,5 @@ import { Component } from '@angular/core';
     }
   `]
 })
+// Topmost utility bar displaying company certifications, phone number, and support email
 export class UtilityBarComponent {}

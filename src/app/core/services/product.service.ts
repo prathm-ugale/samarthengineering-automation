@@ -4,6 +4,7 @@ import { Product } from '../models/product.model';
 import { CATEGORIES_DATA } from '../data/categories.data';
 import { PRODUCTS_DATA } from '../data/products.data';
 
+// Manages catalog data queries for product categories, items, and search filtering
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,7 @@ export class ProductService {
   private categories: ProductCategory[] = CATEGORIES_DATA;
   private products: Product[] = PRODUCTS_DATA;
 
+  // Returns all product categories with dynamically calculated product counts
   getCategories(): ProductCategory[] {
     return this.categories.map(c => {
       const count = this.products.filter(p => p.categorySlug === c.slug).length;
@@ -21,6 +23,7 @@ export class ProductService {
     });
   }
 
+  // Finds a specific category by URL slug and attaches its product count
   getCategoryBySlug(slug: string): ProductCategory | undefined {
     const cat = this.categories.find(c => c.slug === slug);
     if (cat) {
@@ -33,26 +36,32 @@ export class ProductService {
     return undefined;
   }
 
+  // Returns an immutable copy of all products in the catalog
   getAllProducts(): Product[] {
     return [...this.products];
   }
 
+  // Filters products flagged as featured for homepage showcase
   getFeaturedProducts(): Product[] {
     return this.products.filter(p => p.featured);
   }
 
+  // Filters products belonging to a specific category slug
   getProductsByCategory(categorySlug: string): Product[] {
     return this.products.filter(p => p.categorySlug === categorySlug);
   }
 
+  // Finds a single product by unique URL slug
   getProductBySlug(slug: string): Product | undefined {
     return this.products.find(p => p.slug === slug);
   }
 
+  // Finds a single product by its unique internal ID
   getProductById(id: string): Product | undefined {
     return this.products.find(p => p.id === id);
   }
 
+  // Performs multi-criteria search filtering by keywords, category, and tags
   searchProducts(query: string, categorySlug?: string, tag?: string): Product[] {
     let results = this.products;
     if (categorySlug && categorySlug !== 'all') {

@@ -35,7 +35,7 @@ import { ToastService } from '../../services/toast.service';
       padding: 14px 18px;
       border-radius: 8px;
       box-shadow: var(--shadow-md);
-      background: #white;
+      background: #ffffff;
     }
     .toast-success { border-left: 4px solid #007C7A; }
     .toast-error { border-left: 4px solid #e53e3e; }
@@ -54,6 +54,7 @@ import { ToastService } from '../../services/toast.service';
     }
   `]
 })
+// Container overlay component rendering active toast notifications
 export class ToastContainerComponent {
   constructor(public toastService: ToastService) {}
 }

@@ -22,6 +22,8 @@ import { ToastContainerComponent } from './core/layout/toast-container/toast-con
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
+// Root application shell hosting global navigation, active page router outlet, and layout overlays
 export class App {
+  // Application brand display title
   title = 'Samarth Engineering';
 }

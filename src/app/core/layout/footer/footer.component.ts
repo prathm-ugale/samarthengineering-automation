@@ -3,18 +3,19 @@ import { RouterLink } from '@angular/router';
 import { NgFor } from '@angular/common';
 import { ProductCategory } from '../../models/category.model';
 import { ProductService } from '../../services/product.service';
+import { BrandLogoComponent } from '../../../shared/components/brand-logo/brand-logo.component';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [RouterLink, NgFor],
+  imports: [RouterLink, NgFor, BrandLogoComponent],
   template: `
     <footer class="site-footer">
       <div class="container">
         <div class="footer-top">
           <div class="footer-col company-col">
             <div class="footer-brand">
-              <img src="assets/images/logo-light.svg" alt="Samarth Engineering" class="footer-logo-img" />
+              <app-brand-logo theme="dark"></app-brand-logo>
             </div>
             <p class="footer-desc">
               Pioneering Indian factory automation, precision motion control, pneumatic systems, robotics, and industrial components engineered in Bhosari MIDC, Pune.
@@ -186,10 +187,13 @@ import { ProductService } from '../../services/product.service';
     }
   `]
 })
+// Global site footer component with company info, categories, and quick links
 export class FooterComponent {
+  // Product categories displayed dynamically in the footer navigation
   categories: ProductCategory[] = [];
 
   constructor(private productService: ProductService) {
+    // Loads catalog categories for footer link lists
     this.categories = this.productService.getCategories();
   }
 }

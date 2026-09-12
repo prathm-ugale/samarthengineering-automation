@@ -2,26 +2,25 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { QuoteModalService } from '../../services/quote-modal.service';
+import { BrandLogoComponent } from '../../../shared/components/brand-logo/brand-logo.component';
 
 @Component({
   selector: 'app-mobile-nav',
   standalone: true,
-  imports: [RouterLink, NgIf],
+  imports: [RouterLink, NgIf, BrandLogoComponent],
   template: `
     <div *ngIf="isOpen" class="mobile-nav-overlay" (click)="close.emit()">
       <div class="mobile-drawer" (click)="$event.stopPropagation()">
         <div class="drawer-header">
           <div class="drawer-brand">
-            <img src="assets/images/logo.svg" alt="Samarth Engineering" class="drawer-logo-img" />
+            <app-brand-logo></app-brand-logo>
           </div>
           <button (click)="close.emit()" class="drawer-close" aria-label="Close menu">&times;</button>
         </div>
         <nav class="drawer-links">
           <a routerLink="/" (click)="close.emit()" class="drawer-link">Home</a>
           <a routerLink="/products" (click)="close.emit()" class="drawer-link">Products Catalogue</a>
-          <a routerLink="/solutions" (click)="close.emit()" class="drawer-link">Engineering Solutions</a>
           <a routerLink="/industries" (click)="close.emit()" class="drawer-link">Industries</a>
-          <a routerLink="/projects" (click)="close.emit()" class="drawer-link">Case Studies</a>
           <a routerLink="/about" (click)="close.emit()" class="drawer-link">About Us</a>
           <a routerLink="/resources" (click)="close.emit()" class="drawer-link">Resources & Downloads</a>
           <a routerLink="/contact" (click)="close.emit()" class="drawer-link">Contact Us</a>
@@ -96,11 +95,14 @@ import { QuoteModalService } from '../../services/quote-modal.service';
   `]
 })
 export class MobileNavComponent {
+  // Flag indicating whether the mobile navigation drawer is currently open
   @Input() isOpen = false;
+  // Event emitted when user requests to close the mobile navigation drawer
   @Output() close = new EventEmitter<void>();
 
   constructor(private quoteService: QuoteModalService) {}
 
+  // Closes mobile menu and triggers the RFQ quotation modal
   openQuote(): void {
     this.close.emit();
     this.quoteService.open({ source: 'Mobile Nav' });

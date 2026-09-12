@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgFor, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -30,7 +30,25 @@ import { AutomationSolution } from '../../core/models/solution.model';
          1. KINEMATIC HERO SECTION (Aximotion Style)
          ========================================== -->
     <section class="hero-section">
-      <div class="hero-bg-overlay"></div>
+      <!-- Background Automation Machinery Video with Subtle Blur -->
+      <div class="hero-video-wrapper">
+        <video 
+          #heroVideo
+          class="hero-bg-video" 
+          autoplay 
+          [muted]="true" 
+          [defaultMuted]="true" 
+          loop 
+          playsinline 
+          preload="auto"
+          (canplay)="ensureVideoPlay()"
+          (loadeddata)="ensureVideoPlay()">
+          <!-- 30 FPS faststart primary video with webm fallback -->
+          <source src="assets/videos/hero-automation.mp4" type="video/mp4">
+          <source src="assets/videos/hero-automation.webm" type="video/webm">
+        </video>
+        <div class="hero-video-overlay"></div>
+      </div>
       
       <div class="container hero-container">
         <!-- Left Hero Content -->
@@ -423,19 +441,40 @@ import { AutomationSolution } from '../../core/models/solution.model';
        ========================================================================== */
     .hero-section {
       position: relative;
-      background: linear-gradient(135deg, #0b1e33 0%, #101722 55%, #14314a 100%);
+      background: #0b1e33;
       color: #ffffff;
       padding: 100px 0 80px;
       overflow: hidden;
     }
-    .hero-bg-overlay {
+    .hero-video-wrapper {
       position: absolute;
       inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero-bg-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translate(-50%, -50%) scale(1.08);
+      filter: blur(4px) brightness(0.56) contrast(1.18) saturate(1.15);
+      will-change: transform;
+    }
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(11, 30, 51, 0.86) 0%, rgba(16, 23, 34, 0.76) 55%, rgba(20, 49, 74, 0.84) 100%);
       background-image: 
-        radial-gradient(circle at 18% 25%, rgba(240, 120, 34, 0.16) 0%, transparent 40%),
-        radial-gradient(circle at 85% 65%, rgba(0, 124, 122, 0.18) 0%, transparent 45%),
-        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 60px),
-        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 60px);
+        radial-gradient(circle at 18% 25%, rgba(240, 120, 34, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 85% 65%, rgba(0, 124, 122, 0.2) 0%, transparent 50%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 60px),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 60px);
       pointer-events: none;
     }
     .hero-container {
@@ -885,7 +924,9 @@ import { AutomationSolution } from '../../core/models/solution.model';
     }
   `]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
+  @ViewChild('heroVideo') heroVideo!: ElementRef<HTMLVideoElement>;
+
   categories: ProductCategory[] = [];
   allProducts: Product[] = [];
   displayedProducts: Product[] = [];
@@ -909,6 +950,7 @@ export class HomeComponent implements OnInit {
     private seoService: SeoService
   ) { }
 
+  // Initialize SEO meta tags, product catalog, and initial featured list
   ngOnInit(): void {
     this.seoService.setTitle('Samarth Engineering | Precision Motion, Automation & Industrial Components');
     this.seoService.setMetaData('Premier Indian distributor and manufacturer of Linear Motion Guides, Precision Ball Screws, Pneumatics, Toggle Clamps, Leveling Pads, Couplings, and SPM Automation Machines.');
@@ -920,6 +962,7 @@ export class HomeComponent implements OnInit {
     this.solutions = this.solutionService.getAllSolutions().slice(0, 3);
   }
 
+  // Filter showcased products based on selected category tab
   selectTab(slug: string): void {
     this.selectedTab = slug;
     if (slug === 'all') {
@@ -930,10 +973,48 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // Trigger video autoplay once DOM elements are rendered
+  ngAfterViewInit(): void {
+    this.ensureVideoPlay();
+  }
+
+  // Resume background video playback whenever user switches back to this tab
+  @HostListener('window:focus')
+  @HostListener('document:visibilitychange')
+  onWindowVisibilityChange(): void {
+    if (typeof document !== 'undefined' && !document.hidden) {
+      this.ensureVideoPlay();
+    }
+  }
+
+  // Ensure video element plays smoothly and handles browser autoplay restrictions
+  ensureVideoPlay(): void {
+    const video = this.heroVideo?.nativeElement;
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      if (video.paused) {
+        const promise = video.play();
+        if (promise !== undefined) {
+          promise.catch(() => {
+            video.muted = true;
+            setTimeout(() => {
+              if (video.paused) {
+                video.play().catch(() => {});
+              }
+            }, 150);
+          });
+        }
+      }
+    }
+  }
+
+  // Open modal for general quotation inquiries
   openGeneralRfq(): void {
     this.quoteService.open({ source: 'Hero RFQ Button' });
   }
 
+  // Submit quick quotation request from home page form
   submitQuickRfq(e: Event): void {
     e.preventDefault();
     this.quoteService.open({
