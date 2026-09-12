@@ -489,24 +489,46 @@ import { AutomationSolution } from '../../core/models/solution.model';
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: rgba(240, 120, 34, 0.15);
-      border: 1px solid rgba(240, 120, 34, 0.35);
-      padding: 6px 16px;
+      background: rgba(11, 30, 51, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(0, 210, 206, 0.55);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45), 0 0 16px rgba(0, 210, 206, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      padding: 7px 18px;
       border-radius: var(--radius-full);
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
-      color: #ffa82e;
+      letter-spacing: 0.14em;
+      color: #00f0ea;
+      text-shadow: 0 0 10px rgba(0, 240, 234, 0.35);
       margin-bottom: 24px;
+      transition: all 0.25s ease;
+    }
+    .hero-badge:hover {
+      border-color: #00f0ea;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5), 0 0 22px rgba(0, 210, 206, 0.35);
+      transform: translateY(-1px);
     }
     .pulse-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #f07822;
-      box-shadow: 0 0 10px #f07822;
+      background: #00f0ea;
+      box-shadow: 0 0 10px #00f0ea, 0 0 18px rgba(0, 240, 234, 0.6);
       animation: pulseGlow 2s infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+        box-shadow: 0 0 10px #00f0ea, 0 0 18px rgba(0, 240, 234, 0.6);
+      }
+      50% {
+        transform: scale(1.3);
+        opacity: 0.8;
+        box-shadow: 0 0 16px #00f0ea, 0 0 26px rgba(0, 240, 234, 0.8);
+      }
     }
     .hero-title {
       font-size: clamp(2.6rem, 4.5vw, 4.2rem);
