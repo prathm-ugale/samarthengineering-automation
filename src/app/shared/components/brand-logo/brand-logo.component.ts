@@ -11,12 +11,12 @@ import { CommonModule } from '@angular/common';
         <!-- Mode: Outer gear teeth wheel rotates while S stays upright -->
         <ng-container *ngIf="rotationMode === 'wheel-only'">
           <img 
-            [src]="theme === 'dark' ? 'assets/images/samarth-gear-pure-wheel-dark.png' : 'assets/images/samarth-gear-pure-wheel.png'" 
+            src="assets/images/samarth-gear-pure-wheel.png" 
             alt="Rotating Gear Wheel" 
             class="gear-rotating-layer" 
           />
           <img 
-            [src]="theme === 'dark' ? 'assets/images/samarth-gear-inner-s-dark.png' : 'assets/images/samarth-gear-inner-s.png'" 
+            src="assets/images/samarth-gear-inner-s.png" 
             alt="Samarth S Monogram" 
             class="gear-stationary-core" 
           />
@@ -25,7 +25,7 @@ import { CommonModule } from '@angular/common';
         <!-- Mode: Full gear emblem rotates -->
         <ng-container *ngIf="rotationMode === 'full-gear'">
           <img 
-            [src]="theme === 'dark' ? 'assets/images/samarth-gear-icon-dark.png' : 'assets/images/samarth-gear-icon.png'" 
+            src="assets/images/samarth-gear-icon.png" 
             alt="Rotating Gear Logo" 
             class="gear-rotating-layer" 
           />
@@ -53,9 +53,6 @@ import { CommonModule } from '@angular/common';
       height: 48px;
       user-select: none;
     }
-    .theme-dark {
-      filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.45));
-    }
     .gear-stack {
       position: relative;
       width: 48px;
@@ -64,7 +61,6 @@ import { CommonModule } from '@angular/common';
       display: flex;
       align-items: center;
       justify-content: center;
-      contain: layout style paint;
     }
     .gear-rotating-layer {
       position: absolute;
@@ -72,13 +68,9 @@ import { CommonModule } from '@angular/common';
       width: 100%;
       height: 100%;
       object-fit: contain;
-      transform-origin: 50% 50%;
+      transform-origin: center center;
       animation: spinGear 8s linear infinite;
-      backface-visibility: hidden;
-      transform: translateZ(0);
       will-change: transform;
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: high-quality;
     }
     .gear-stationary-core {
       position: absolute;
@@ -88,27 +80,20 @@ import { CommonModule } from '@angular/common';
       object-fit: contain;
       z-index: 2;
       pointer-events: none;
-      backface-visibility: hidden;
-      transform: translateZ(0);
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: high-quality;
     }
     .brand-text-img {
-      height: 42px;
+      height: 44px;
       width: auto;
       object-fit: contain;
       display: block;
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: high-quality;
-      transform: translateZ(0);
     }
 
     @keyframes spinGear {
       from {
-        transform: rotate(0deg) translateZ(0);
+        transform: rotate(0deg);
       }
       to {
-        transform: rotate(360deg) translateZ(0);
+        transform: rotate(360deg);
       }
     }
 
